@@ -12,3 +12,8 @@ target/
 Thumbs.db
 *~
 *.swp
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+state/
