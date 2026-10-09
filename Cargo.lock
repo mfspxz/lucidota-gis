@@ -88,6 +88,9 @@ dependencies = [
 [[package]]
 name = "palontour"
 version = "0.1.0"
+dependencies = [
+ "geo_core",
+]
 
 [[package]]
 name = "poi"

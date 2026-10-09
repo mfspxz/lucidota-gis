@@ -4,3 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+
+[dev-dependencies]
+# path dep only — geo_core is std-only like palontour, not an external crate.
+geo_core = { path = "../geo_core" }

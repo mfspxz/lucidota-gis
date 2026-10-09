@@ -21,7 +21,10 @@ pub struct Tileset {
 
 impl Tileset {
     pub fn new(name: &str) -> Self {
-        Self { name: name.to_string(), entries: BTreeMap::new() }
+        Self {
+            name: name.to_string(),
+            entries: BTreeMap::new(),
+        }
     }
 
     pub fn insert(&mut self, z: u8, x: u32, y: u32, digest: String) {
@@ -52,10 +55,16 @@ impl Tileset {
     pub fn to_json(&self) -> String {
         let mut parts = Vec::new();
         for ((z, x, y), d) in &self.entries {
-            parts.push(format!("{{\"z\":{z},\"x\":{x},\"y\":{y},\"digest\":\"{d}\"}}"));
+            parts.push(format!(
+                "{{\"z\":{z},\"x\":{x},\"y\":{y},\"digest\":\"{d}\"}}"
+            ));
         }
-        format!("{{\"name\":\"{}\",\"root\":\"{}\",\"tiles\":[{}]}}",
-            crate_escape(&self.name), self.root_digest(), parts.join(","))
+        format!(
+            "{{\"name\":\"{}\",\"root\":\"{}\",\"tiles\":[{}]}}",
+            crate_escape(&self.name),
+            self.root_digest(),
+            parts.join(",")
+        )
     }
 
     /// Store the index JSON itself in the CAS; returns its digest.

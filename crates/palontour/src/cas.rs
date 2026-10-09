@@ -11,11 +11,16 @@ pub struct ContentStore {
 impl ContentStore {
     pub fn open(root: &Path) -> std::io::Result<Self> {
         std::fs::create_dir_all(root.join("objects"))?;
-        Ok(Self { root: root.to_path_buf() })
+        Ok(Self {
+            root: root.to_path_buf(),
+        })
     }
 
     fn path_for(&self, digest: &str) -> PathBuf {
-        self.root.join("objects").join(&digest[..2]).join(&digest[2..])
+        self.root
+            .join("objects")
+            .join(&digest[..2])
+            .join(&digest[2..])
     }
 
     /// Store bytes; returns the blake2b-256 hex digest. Idempotent.

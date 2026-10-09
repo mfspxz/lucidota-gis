@@ -1,8 +1,14 @@
 //! Pure-Rust BLAKE2b (RFC 7693). Verified against system b2sum.
 
 const IV: [u64; 8] = [
-    0x6a09e667f3bcc908, 0xbb67ae8584caa73b, 0x3c6ef372fe94f82b, 0xa54ff53a5f1d36f1,
-    0x510e527fade682d1, 0x9b05688c2b3e6c1f, 0x1f83d9abfb41bd6b, 0x5be0cd19137e2179,
+    0x6a09e667f3bcc908,
+    0xbb67ae8584caa73b,
+    0x3c6ef372fe94f82b,
+    0xa54ff53a5f1d36f1,
+    0x510e527fade682d1,
+    0x9b05688c2b3e6c1f,
+    0x1f83d9abfb41bd6b,
+    0x5be0cd19137e2179,
 ];
 
 const SIGMA: [[usize; 16]; 12] = [
@@ -42,8 +48,7 @@ fn compress(h: &mut [u64; 8], block: &[u8; 128], t: u128, last: bool) {
         v[14] = !v[14];
     }
     let m = |i: usize| u64::from_le_bytes(block[8 * i..8 * i + 8].try_into().unwrap());
-    for r in 0..12 {
-        let s = &SIGMA[r];
+    for s in &SIGMA {
         g(&mut v, 0, 4, 8, 12, m(s[0]), m(s[1]));
         g(&mut v, 1, 5, 9, 13, m(s[2]), m(s[3]));
         g(&mut v, 2, 6, 10, 14, m(s[4]), m(s[5]));
@@ -78,7 +83,7 @@ pub fn blake2b(data: &[u8], nn: usize) -> Vec<u8> {
         }
     }
     let mut out = Vec::with_capacity(nn);
-    for w in h.iter().take((nn + 7) / 8) {
+    for w in h.iter().take(nn.div_ceil(8)) {
         out.extend_from_slice(&w.to_le_bytes());
     }
     out.truncate(nn);
