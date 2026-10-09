@@ -1,0 +1,24 @@
+{
+ "mirror_log": [
+  {
+   "dataset": "databc-bcgn/saltspring-bbox",
+   "url": "https://openmaps.gov.bc.ca/geo/pub/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=pub:WHSE_BASEMAPPING.GNS_GEOGRAPHICAL_NAMES_SP&outputFormat=application/json&srsName=urn:ogc:def:crs:EPSG:4326&bbox=48.70,-123.75,49.00,-123.25,urn:ogc:def:crs:EPSG:4326",
+   "fetched_unix": 1791347136,
+   "bytes": 415698,
+   "digest": "b91c93fc505067c55e9ce451112a0c82adc88d83056221248c2f84f65a863b0887eb5b022c89f17442e6267e532258a85f0502d15ab9cc529241926e6ff204fa",
+   "features": 486,
+   "ok": true,
+   "license": "Open Government Licence \u2013 British Columbia"
+  },
+  {
+   "dataset": "databc-bcgn/coombs-bbox",
+   "url": "https://openmaps.gov.bc.ca/geo/pub/wfs?service=WFS&version=2.0.0&request=GetFeature&typeName=pub:WHSE_BASEMAPPING.GNS_GEOGRAPHICAL_NAMES_SP&outputFormat=application/json&srsName=urn:ogc:def:crs:EPSG:4326&bbox=49.22,-124.65,49.38,-124.22,urn:ogc:def:crs:EPSG:4326",
+   "fetched_unix": 1791347136,
+   "bytes": 50635,
+   "digest": "f9ec114d49c2df255d453f3d89a123fbf8ecf30de6c6b265638264feefeb4343e9ad4a1641e1c0b7ec6fc7b8d9c468e6905885104db6d6e3bf04c2cf60179187",
+   "features": 59,
+   "ok": true,
+   "license": "Open Government Licence \u2013 British Columbia"
+  }
+ ]
+}

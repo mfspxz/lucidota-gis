@@ -1,0 +1,13 @@
+[package]
+name = "offline_packs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+geo_core = { path = "../geo_core" }
+palontour = { path = "../palontour" }
+
+[dev-dependencies]
+ortho = { path = "../ortho" }
+saltspring = { path = "../saltspring" }

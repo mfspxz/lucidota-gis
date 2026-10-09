@@ -1,0 +1,8 @@
+[package]
+name = "map_export"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+geo_core = { path = "../geo_core" }

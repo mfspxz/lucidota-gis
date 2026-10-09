@@ -1,0 +1,14 @@
+# build outputs
+target/
+# test scratch
+*.redb
+*.redb-journal
+# secrets
+.env
+.env.*
+!.env.example
+# editor/OS noise
+.DS_Store
+Thumbs.db
+*~
+*.swp

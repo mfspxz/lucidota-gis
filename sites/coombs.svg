@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+<rect width="100%" height="100%" fill="#0d1117"/>
+<circle cx="529.5" cy="322.7" r="5" fill="#ff4fd8" stroke="#fff" stroke-width="1"/>
+<text x="537.5" y="326.7" fill="#e6edf3" font-size="12" font-family="monospace">Coombs Old Country Market</text>
+<circle cx="515.6" cy="324.9" r="5" fill="#ff4fd8" stroke="#fff" stroke-width="1"/>
+<text x="523.6" y="328.9" fill="#e6edf3" font-size="12" font-family="monospace">Coombs Junction</text>
+<circle cx="770.0" cy="266.3" r="5" fill="#ff4fd8" stroke="#fff" stroke-width="1"/>
+<text x="778.0" y="270.3" fill="#e6edf3" font-size="12" font-family="monospace">Parksville</text>
+<circle cx="704.7" cy="391.0" r="5" fill="#ff4fd8" stroke="#fff" stroke-width="1"/>
+<text x="712.7" y="395.0" fill="#e6edf3" font-size="12" font-family="monospace">Errington</text>
+<circle cx="882.3" cy="234.8" r="5" fill="#ff4fd8" stroke="#fff" stroke-width="1"/>
+<text x="890.3" y="238.8" fill="#e6edf3" font-size="12" font-family="monospace">Rathtrevor Beach</text>
+<circle cx="693.0" cy="634.5" r="5" fill="#ff4fd8" stroke="#fff" stroke-width="1"/>
+<text x="701.0" y="638.5" fill="#e6edf3" font-size="12" font-family="monospace">Englishman River Falls</text>
+<circle cx="193.0" cy="290.8" r="5" fill="#ff4fd8" stroke="#fff" stroke-width="1"/>
+<text x="201.0" y="294.8" fill="#e6edf3" font-size="12" font-family="monospace">Little Qualicum Falls</text>
+<circle cx="674.4" cy="210.2" r="5" fill="#ff4fd8" stroke="#fff" stroke-width="1"/>
+<text x="682.4" y="214.2" fill="#e6edf3" font-size="12" font-family="monospace">French Creek</text>
+<circle cx="546.5" cy="345.9" r="5" fill="#ff4fd8" stroke="#fff" stroke-width="1"/>
+<text x="554.5" y="349.9" fill="#e6edf3" font-size="12" font-family="monospace">Coombs Fairgrounds</text>
+<circle cx="539.5" cy="319.7" r="5" fill="#ff4fd8" stroke="#fff" stroke-width="1"/>
+<text x="547.5" y="323.7" fill="#e6edf3" font-size="12" font-family="monospace">Butterfly World</text>
+<g font-family="monospace" font-size="11" fill="#e6edf3">
+<rect x="20" y="670" width="160" height="6" fill="#e6edf3"/>
+<text x="20" y="662">5 km</text>
+</g>
+<text x="20" y="30" fill="#ff4fd8" font-size="20" font-family="monospace" font-weight="bold">Coombs / Parksville GIS</text>
+<g transform="translate(960,40)" fill="#e6edf3" font-family="monospace" font-size="14" text-anchor="middle"><polygon points="0,-14 6,6 0,2 -6,6" fill="#e6edf3"/><text y="26">N</text></g>
+</svg>

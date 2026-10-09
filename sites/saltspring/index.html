@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"/>
+<title>Saltspring Slasher GIS</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>html,body,#map{height:100%;margin:0;background:#0a0a0f}
+.hdr{position:absolute;z-index:999;top:10px;left:50px;color:#ff4fd8;font:700 18px monospace;
+background:rgba(10,10,15,.8);padding:6px 12px;border:1px solid #ff4fd8}</style></head>
+<body><div id="map"></div><div class="hdr">SALTSRING SLASHER GIS</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var map = L.map('map').setView([48.86,-123.49], 11);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {maxZoom:19, attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+L.marker([48.8541,-123.4994]).addTo(map).bindPopup("<b>Ganges</b><br/>village — Main village; harbour, market, services");
+L.marker([48.7677,-123.4500]).addTo(map).bindPopup("<b>Fulford Harbour</b><br/>ferry — BC Ferries -> Swartz Bay (Victoria)");
+L.marker([48.8594,-123.4750]).addTo(map).bindPopup("<b>Long Harbour</b><br/>ferry — BC Ferries -> Tsawwassen");
+L.marker([48.8862,-123.5572]).addTo(map).bindPopup("<b>Vesuvius Bay</b><br/>ferry — BC Ferries -> Crofton (Vancouver Island)");
+L.marker([48.7589,-123.3800]).addTo(map).bindPopup("<b>Ruckle Provincial Park</b><br/>park — SE tip; shoreline camping");
+L.marker([48.8572,-123.5064]).addTo(map).bindPopup("<b>Mount Maxwell</b><br/>park — Summit viewpoint, Burgoyne Bay overlook");
+L.marker([48.8319,-123.4530]).addTo(map).bindPopup("<b>Beddis Beach</b><br/>beach — Swimming beach, east side");
+L.marker([48.8120,-123.5230]).addTo(map).bindPopup("<b>Burgoyne Bay</b><br/>park — Provincial park, estuary");
+L.marker([48.8742,-123.5120]).addTo(map).bindPopup("<b>St. Mary Lake</b><br/>lake — Ganges water supply");
+L.marker([48.8230,-123.4750]).addTo(map).bindPopup("<b>Cusheon Lake</b><br/>lake — Swimming lake, SE of Ganges");
+L.marker([48.8950,-123.5050]).addTo(map).bindPopup("<b>Fernwood</b><br/>village — North-end dock community");
+L.marker([48.7700,-123.4480]).addTo(map).bindPopup("<b>Fulford Village</b><br/>village — South-end village at ferry");
+L.marker([48.8620,-123.5000]).addTo(map).bindPopup("<b>Salt Spring Island Airstrip</b><br/>airstrip — Private grass strip (approx)");
+L.marker([48.8480,-123.5050]).addTo(map).bindPopup("<b>Mouat Park</b><br/>park — Ganges community park");
+
+["ferry_routes","roads"].forEach(function(layer){
+  fetch('data/'+layer+'.geojson').then(r=>r.json()).then(j=>{
+    L.geoJSON(j,{style:{color:'#ff4fd8',weight:2}}).addTo(map);
+  });
+});
+</script></body></html>

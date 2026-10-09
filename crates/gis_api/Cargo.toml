@@ -1,0 +1,13 @@
+[package]
+name = "gis_api"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+geo_core = { path = "../geo_core" }
+poi = { path = "../poi" }
+route = { path = "../route" }
+saltspring = { path = "../saltspring" }
+coombs = { path = "../coombs" }
+offline_packs = { path = "../offline_packs" }
