@@ -1,8 +1,15 @@
 //! offline_packs — gis-009: downloadable offline map packs.
 //!
 //! Format `.gispack`: a tar containing manifest.json (blake2b-256 per tile),
-//! tiles/{z}/{x}/{y}.png, layers/*.geojson. Tamper-evident via the manifest;
-//! readable by system tar.
+//! tiles/{z}/{x}/{y}.png, layers/*.geojson. readable by system tar.
+//!
+//! INTEGRITY, NOT TAMPER-EVIDENCE (R-2/R-3/R-8): the manifest digests detect
+//! accidental corruption and tampering by a party who can modify tile bytes
+//! but not the manifest. The manifest itself is UNSIGNED — a writer who can
+//! rewrite the whole pack can rewrite the manifest too, silently. Pack
+//! authenticity (who published it) is UNKNOWN; only byte-integrity against
+//! the manifest is checked, and only on the read path (`verify` recomputes
+//! every tile digest). Do not call packs tamper-evident.
 
 pub mod tar;
 

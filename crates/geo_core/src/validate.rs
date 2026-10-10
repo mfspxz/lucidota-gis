@@ -78,6 +78,8 @@ impl Region {
 
 #[cfg(test)]
 mod tests {
+    // PROPERTY TESTS (R-7) — ingest-boundary invariants: malformed and
+    // out-of-policy inputs are rejected; in-policy inputs are accepted.
     use super::*;
     use crate::track::TrackPoint;
 

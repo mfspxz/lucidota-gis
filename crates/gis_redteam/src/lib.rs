@@ -98,6 +98,11 @@ pub fn run_battery() -> Vec<AttackResult> {
 
 #[cfg(test)]
 mod tests {
+    // PROPERTY TESTS (R-7) — adversarial invariants of the ingest boundary:
+    // every known attack shape is rejected; every honest input is accepted.
+    // `battery_covers_ten_cases` is a CHANGE-DETECTION guard (battery must not
+    // silently shrink). Property expectations here may never be rewritten to
+    // match a behavior change without adversarial sign-off.
     use super::*;
 
     #[test]
