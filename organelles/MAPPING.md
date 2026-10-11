@@ -19,7 +19,7 @@ stand-in registry with real host registration.)
 |---|---|---|---|
 | Pure geodesy: haversine, bearing, destination, Web-Mercator tile math, projection conversions | `geo_core` (coord.rs: LatLon/WebMercator) | **gis-geo** (`ge`): `haversine`, `bearing`, `destination`, `tile_xy`, `tile_bbox`, `to_meters`, `to_latlon`. All ReadOnly/Proven. | **Bespoke** (`ge`). Justification: `ref-geo-point` is a single-point primitive; this is a geodesy toolkit (tile pyramids, rhumb-line destination, projection roundtrips). Adopting the ref would cover one op and leave six reinvented. The unit's identity is the toolkit. |
 | POI database: in-memory DB + JSON-file persistence, radius/kind queries, seeded canonical datasets | `poi` (PoiDb: add/remove/get/near/by_kind/save/load/seed_*) | **gis-poi** (`gi`): `add`, `remove` (Write, `gi.write`), `get`, `near`, `by_kind`, `user_added` (ReadOnly), `seed_saltspring`, `seed_coombs` (Write, `gi.write`), `save`, `load` (Write `gi.write` / ReadOnly). | **Bespoke** (`gi`). Justification: a geo POI store with radius queries and seeded canonical datasets is not `ref-kv-store` (no geo queries) and not `ref-geo-point` (a store, not a point). |
-| Pedicab route planner: waypoint graph, Dijkstra with pedicab grade profile | `route` (Graph: add_node/add_leg/shortest/path_distance_m) | **gis-route** (`gr`): `add_node`, `add_leg` (Write, `gr.write`), `shortest`, `path_distance` (ReadOnly). | **Bespoke** (`gr`). Justification: no ref organelle routes. The pedicab profile (grade-penalized Dijkstra) is domain logic. |
+| Pedicab route planner: waypoint graph, Dijkstra with pedicab grade profile | `route` (Graph: add_node/add_leg/shortest/path_distance_m) | **gis-route** (`gj`): `add_node`, `add_leg` (Write, `gj.write`), `shortest`, `path_distance` (ReadOnly). | **Bespoke** (`gj`). Justification: no ref organelle routes. The pedicab profile (grade-penalized Dijkstra) is domain logic. |
 
 ## Deliberate exclusions
 
@@ -40,7 +40,7 @@ stand-in registry with real host registration.)
 ## Reference-organelle check (all 12 considered)
 
 - `ref-geo-point`: single-point primitive; `ge` is a six-op toolkit, `gi`
-  is a store, `gr` routes. Adopting it would cover ~1 of 20 ops.
+  is a store, `gj` routes. Adopting it would cover ~1 of 20 ops.
 - `ref-kv-store`: blind KV; the POI store has radius queries, kinds, and
   seeded datasets. Rejected.
 - `ref-file-cas`: POI persistence is JSON-file, not content-addressed.
@@ -58,3 +58,10 @@ stand-in registry with real host registration.)
   Suspend = no-op, kill = drop.
 - Envelopes: 1 cpu / 256 MB / 30 s each.
 - Receipts: content-addressed sha256, chained; `verify_chain` green in tests.
+
+## Codon collision check (2026-10-11)
+
+`ge`, `gi` clear. `gj` (gis-route): renamed from `gr` — `gr` is owned by
+park-send-wreck's `pw-grid` (committed 2026-10-10 21:44 UTC, earlier than
+gis's 23:41 UTC); earlier commit wins. `gj` verified free workspace-wide.
+No remaining collisions.

@@ -5,7 +5,7 @@
 //!   destination, tile math, projections. ReadOnly/Proven.
 //! - `gis-poi` (`gi`): the POI database behind a Mutex — add/remove/get,
 //!   radius + kind queries, seed datasets, JSON save/load. Write-gated.
-//! - `gis-route` (`gr`): the pedicab routing graph behind a Mutex —
+//! - `gis-route` (`gj`): the pedicab routing graph behind a Mutex —
 //!   add_node/add_leg, Dijkstra shortest under pedicab|direct profile.
 //!   Write-gated for mutation, pure for queries.
 
@@ -281,16 +281,16 @@ impl Organelle for GisPoi {
 
 fn gr_manifest() -> OrganelleManifest {
     manifest_base(
-        "gis-route", "gr",
+        "gis-route", "gj",
         "pedicab route planner: waypoint graph, grade-penalized Dijkstra",
         vec![
             contract_gated("add_node", "add a waypoint node",
                 obj(json!({"id": {"type": "string"}, "name": {"type": "string"},
                            "lat": {"type": "number"}, "lon": {"type": "number"}}),
-                    &["id", "name", "lat", "lon"]), "gr.write"),
+                    &["id", "name", "lat", "lon"]), "gj.write"),
             contract_gated("add_leg", "add a leg between waypoints with grade 0..1",
                 obj(json!({"a": {"type": "string"}, "b": {"type": "string"}, "grade": {"type": "number"}}),
-                    &["a", "b", "grade"]), "gr.write"),
+                    &["a", "b", "grade"]), "gj.write"),
             contract("shortest", "Dijkstra shortest path under a profile",
                 obj(json!({"from": {"type": "string"}, "to": {"type": "string"},
                            "profile": {"type": "string", "enum": ["pedicab", "direct"]}}),
@@ -367,7 +367,7 @@ mod tests {
 
     #[test]
     fn static_manifests_validate() {
-        for (name, codon) in [("gis-geo", "ge"), ("gis-poi", "gi"), ("gis-route", "gr")] {
+        for (name, codon) in [("gis-geo", "ge"), ("gis-poi", "gi"), ("gis-route", "gj")] {
             let m = validate_manifest_json(&manifest_json(name)).expect("static manifest must validate");
             assert_eq!(m.codon, codon);
         }
@@ -386,10 +386,10 @@ mod tests {
         host.register(geo_organelle()).expect("register");
         let ctx = CallContext::new("ge-test", vec![]);
         // Vancouver -> Victoria approx 100km; real haversine
-        let d = host.call(&ctx, "ge", "haversine", json!({"lat1": 49.28, "lon1": -123.12, "lat2": 48.42, "lon2": -123.36})).expect("haversine");
+        let d = host.call(&ctx, "ge", "haversine", json!({"lat1": 49.28, "lon1": -123.12, "lat2": 48.42, "lon2": -123.36})).expect("haversine").output;
         let m = d["meters"].as_f64().unwrap();
         assert!(m > 90_000.0 && m < 115_000.0, "got {m}");
-        let t = host.call(&ctx, "ge", "tile_xy", json!({"lat": 49.28, "lon": -123.12, "z": 12})).expect("tile");
+        let t = host.call(&ctx, "ge", "tile_xy", json!({"lat": 49.28, "lon": -123.12, "z": 12})).expect("tile").output;
         assert!(t["x"].as_u64().unwrap() > 0);
         assert!(host.call(&ctx, "ge", "haversine", json!({"lat1": 91.0, "lon1": 0.0, "lat2": 0.0, "lon2": 0.0})).is_err());
         assert!(host.verify_chain().is_ok());
@@ -400,20 +400,20 @@ mod tests {
         let host = Host::new();
         host.register(poi_organelle()).expect("register");
         let ctx = CallContext::new("gi-test", vec!["gi.write".to_string()]);
-        let a = host.call(&ctx, "gi", "add", json!({"name": "Pier", "kind": "dock", "lat": 49.28, "lon": -123.12, "notes": "ferry"})).expect("add");
+        let a = host.call(&ctx, "gi", "add", json!({"name": "Pier", "kind": "dock", "lat": 49.28, "lon": -123.12, "notes": "ferry"})).expect("add").output;
         let id = a["id"].as_str().unwrap().to_string();
-        let g = host.call(&ctx, "gi", "get", json!({"id": id})).expect("get");
+        let g = host.call(&ctx, "gi", "get", json!({"id": id})).expect("get").output;
         assert_eq!(g["poi"]["name"], "Pier");
-        let n = host.call(&ctx, "gi", "near", json!({"lat": 49.281, "lon": -123.121, "radius_m": 500.0})).expect("near");
+        let n = host.call(&ctx, "gi", "near", json!({"lat": 49.281, "lon": -123.121, "radius_m": 500.0})).expect("near").output;
         assert_eq!(n["hits"].as_array().unwrap().len(), 1);
-        let k = host.call(&ctx, "gi", "by_kind", json!({"kind": "dock"})).expect("by_kind");
+        let k = host.call(&ctx, "gi", "by_kind", json!({"kind": "dock"})).expect("by_kind").output;
         assert_eq!(k["hits"].as_array().unwrap().len(), 1);
         // save/load roundtrip through the real JSON persistence
         let dir = std::env::temp_dir().join("gi-test-pois.json");
         host.call(&ctx, "gi", "save", json!({"path": dir.to_str().unwrap()})).expect("save");
         host.call(&ctx, "gi", "remove", json!({"id": id})).expect("remove");
         host.call(&ctx, "gi", "load", json!({"path": dir.to_str().unwrap()})).expect("load");
-        let g2 = host.call(&ctx, "gi", "get", json!({"id": id})).expect("get2");
+        let g2 = host.call(&ctx, "gi", "get", json!({"id": id})).expect("get2").output;
         assert_eq!(g2["found"], true);
         assert!(host.verify_chain().is_ok());
     }
@@ -422,18 +422,18 @@ mod tests {
     fn route_plans_with_receipts() {
         let host = Host::new();
         host.register(route_organelle()).expect("register");
-        let ctx = CallContext::new("gr-test", vec!["gr.write".to_string()]);
+        let ctx = CallContext::new("gr-test", vec!["gj.write".to_string()]);
         for (id, name, lat, lon) in [("a", "A", 49.28, -123.12), ("b", "B", 49.29, -123.13), ("c", "C", 49.30, -123.14)] {
-            host.call(&ctx, "gr", "add_node", json!({"id": id, "name": name, "lat": lat, "lon": lon})).expect("add_node");
+            host.call(&ctx, "gj", "add_node", json!({"id": id, "name": name, "lat": lat, "lon": lon})).expect("add_node");
         }
-        host.call(&ctx, "gr", "add_leg", json!({"a": "a", "b": "b", "grade": 0.1})).expect("leg");
-        host.call(&ctx, "gr", "add_leg", json!({"a": "b", "b": "c", "grade": 0.9})).expect("leg");
-        host.call(&ctx, "gr", "add_leg", json!({"a": "a", "b": "c", "grade": 0.2})).expect("leg");
+        host.call(&ctx, "gj", "add_leg", json!({"a": "a", "b": "b", "grade": 0.1})).expect("leg");
+        host.call(&ctx, "gj", "add_leg", json!({"a": "b", "b": "c", "grade": 0.9})).expect("leg");
+        host.call(&ctx, "gj", "add_leg", json!({"a": "a", "b": "c", "grade": 0.2})).expect("leg");
         // pedicab profile should prefer a->c direct (grade 0.2) over a->b->c (0.9 leg)
-        let s = host.call(&ctx, "gr", "shortest", json!({"from": "a", "to": "c", "profile": "pedicab"})).expect("shortest");
+        let s = host.call(&ctx, "gj", "shortest", json!({"from": "a", "to": "c", "profile": "pedicab"})).expect("shortest").output;
         assert_eq!(s["found"], true);
         assert!(s["distance_m"].as_f64().unwrap() > 0.0);
-        let miss = host.call(&ctx, "gr", "shortest", json!({"from": "a", "to": "zzz", "profile": "direct"})).expect("miss");
+        let miss = host.call(&ctx, "gj", "shortest", json!({"from": "a", "to": "zzz", "profile": "direct"})).expect("miss").output;
         assert_eq!(miss["found"], false);
         assert!(host.verify_chain().is_ok());
     }
