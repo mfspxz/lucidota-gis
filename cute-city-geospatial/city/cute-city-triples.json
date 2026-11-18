@@ -1,0 +1,1632 @@
+{
+ "classes": {
+  "Authority": [
+   "Authorizes",
+   "Leases",
+   "Permits"
+  ],
+  "Community": [
+   "Supports",
+   "Hosts",
+   "Patrols"
+  ],
+  "District": [
+   "Contains",
+   "Hosts",
+   "LocatedAt"
+  ],
+  "Funder": [
+   "Funds",
+   "Lends",
+   "Subsidizes"
+  ],
+  "Gate": [
+   "Requires",
+   "Blocks",
+   "Permits"
+  ],
+  "Lease": [
+   "Binds",
+   "Expires",
+   "Renews"
+  ],
+  "Network": [
+   "SharesWith",
+   "Connects"
+  ],
+  "NetworkHome": [
+   "Hosts"
+  ],
+  "Operator": [
+   "Operates",
+   "CompetesWith",
+   "PartnersWith"
+  ],
+  "Person": [
+   "Decides",
+   "Represents",
+   "EndorsesClaimed"
+  ],
+  "Place": [
+   "LocatedAt",
+   "Hosts",
+   "Contains"
+  ],
+  "Program": [
+   "HomedNetwork",
+   "HomedAt",
+   "Operates"
+  ],
+  "Route": [
+   "Connects",
+   "Touches"
+  ],
+  "Shelter": [
+   "Hosts",
+   "Contains",
+   "LocatedAt"
+  ],
+  "Station": [
+   "LocatedAt",
+   "Connects"
+  ],
+  "System": [
+   "Scans",
+   "Captures",
+   "Flags",
+   "Alerts",
+   "Stores",
+   "SharesWith"
+  ],
+  "Vendor": [
+   "Provides",
+   "IntegratesWith",
+   "Requires"
+  ]
+ },
+ "counts": {
+  "by_source_file": {
+   "algebra-primitives.json": 2,
+   "cutecity/NETWORK-MAP-2026-10-07.md": 5,
+   "harbour-green-geo.json": 2,
+   "harbour-green-graph.json": 3,
+   "homing-seed": 5,
+   "housing-crime-skytrain-graph.json": 38,
+   "memory/people/john-moody.md": 1,
+   "typed-traits.json": 25,
+   "vancouver-surveillance-graph.json": 16
+  },
+  "by_state": {
+   "claimed": 48,
+   "proven": 36,
+   "unknown": 13
+  },
+  "geo_only": 2,
+  "harbour_green_merged": 27,
+  "homing_seeds": 14,
+  "housing_merged": 38,
+  "surveillance_subset": 16,
+  "things": 83,
+  "triples": 97
+ },
+ "generated": "2026-11-18",
+ "id_rule": "id = sha256(canonical_json(thing)) \u2014 never Python hash(). Same Thing, same id, every run. Readable ids here follow the existing convention of the three source files.",
+ "rule": "Compress, don't narrate. If it is not a Thing, a Trait, a Verb, or a State, it does not go in the graph. Prose lives outside the graph, in the inventory + framework files, never inside a triple.",
+ "schema_note": "typed-traits-v1 + Place-family classes (District, Station, Shelter, Route), NetworkHome, Program-as-home, Gate. Backward compatible: District/Station/Shelter inherit Place traits LocatedAt/Hosts/Contains. Triple shape: [subject, verb, object, state, valid_from, valid_to, source]. State is ternary only: proven / claimed / unknown.",
+ "schema_version": "typed-traits-v1.1",
+ "sources": [
+  "~/workspace/coal-harbour-cute-city/typed-traits.json (25 harbour-green triples, 2026-10-26)",
+  "~/workspace/coal-harbour-cute-city/harbour-green-geo.json (2 geo-only triples: seawall_route, harbour_cafe_nicola)",
+  "~/workspace/coal-harbour-cute-city/algebra-primitives.json (2 time triples: fry elected 2026-10-17, park_board_new_2026 inaugurated 2026-11-02)",
+  "~/workspace/vancouver-surveillance/vancouver-surveillance-graph.json (16 place/cute_city triples of 73; the other 57 are vendor/dataflow triples, out of scope for the city layer \u2014 they live in the surveillance graph)",
+  "~/workspace/vancouver-surveillance/housing-crime-skytrain-graph.json (38 triples, 2026-10-30)",
+  "~/workspace/coal-harbour-cute-city/harbour-green-graph.json (cpc/chcc nodes, claimed)",
+  "~/workspace/cutecity/NETWORK-MAP-2026-10-07.md (5 network homes, live probe 2026-10-07)",
+  "homing-seed 2026-11-18 (4 district-contains + 1 geographic homing assignment, claimed)"
+ ],
+ "things": [
+  {
+   "id": "1199_w_cordova",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "agnes_602_new_west",
+   "traits": [
+    "Shelter",
+    "Place"
+   ],
+   "type": "Shelter"
+  },
+  {
+   "id": "ai_router",
+   "traits": [
+    "Program"
+   ],
+   "type": "Program"
+  },
+  {
+   "id": "barwatch_vancouver",
+   "traits": [
+    "Operator"
+   ],
+   "type": "Operator"
+  },
+  {
+   "id": "beach_ave_2099",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "belkin_house",
+   "traits": [
+    "Shelter",
+    "Place"
+   ],
+   "type": "Shelter"
+  },
+  {
+   "id": "bia_downtown",
+   "traits": [
+    "Community"
+   ],
+   "type": "Community"
+  },
+  {
+   "id": "bia_westend",
+   "traits": [
+    "Community"
+   ],
+   "type": "Community"
+  },
+  {
+   "id": "braid_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "catholic_charities_hostel",
+   "traits": [
+    "Shelter",
+    "Place"
+   ],
+   "type": "Shelter"
+  },
+  {
+   "id": "central_business_district",
+   "traits": [
+    "District",
+    "Place"
+   ],
+   "type": "District"
+  },
+  {
+   "id": "charqui",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "chcc",
+   "traits": [
+    "Community"
+   ],
+   "type": "Community"
+  },
+  {
+   "id": "city_open_data",
+   "traits": [
+    "System"
+   ],
+   "type": "System"
+  },
+  {
+   "id": "coal_harbour",
+   "traits": [
+    "District",
+    "Place"
+   ],
+   "type": "District"
+  },
+  {
+   "id": "coal_harbour_park",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "columbia_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "cpc",
+   "traits": [
+    "Community"
+   ],
+   "type": "Community"
+  },
+  {
+   "id": "ctcc_router",
+   "traits": [
+    "Program"
+   ],
+   "type": "Program"
+  },
+  {
+   "id": "cute_city",
+   "traits": [
+    "Operator"
+   ],
+   "type": "Operator"
+  },
+  {
+   "id": "cute_city_worker",
+   "traits": [
+    "Program"
+   ],
+   "type": "Program"
+  },
+  {
+   "id": "cutecity_cc",
+   "traits": [
+    "NetworkHome"
+   ],
+   "type": "NetworkHome"
+  },
+  {
+   "id": "dtes_strathcona",
+   "traits": [
+    "District",
+    "Place"
+   ],
+   "type": "District"
+  },
+  {
+   "id": "east_hastings",
+   "traits": [
+    "District",
+    "Place"
+   ],
+   "type": "District"
+  },
+  {
+   "id": "edge_1100_granville",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "fry",
+   "traits": [
+    "Person",
+    "Authority"
+   ],
+   "type": "Person"
+  },
+  {
+   "id": "futurpreneur",
+   "traits": [
+    "Funder"
+   ],
+   "type": "Funder"
+  },
+  {
+   "id": "granville_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "granville_strip_1050_granville",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "granville_yaletown",
+   "traits": [
+    "District",
+    "Place"
+   ],
+   "type": "District"
+  },
+  {
+   "id": "harbour_cafe_nicola",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "harbour_green",
+   "traits": [
+    "Place",
+    "Leaseable"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "homeless_encounters_per_station",
+   "traits": [
+    "Data"
+   ],
+   "type": "Data"
+  },
+  {
+   "id": "incorporation",
+   "traits": [
+    "Gate"
+   ],
+   "type": "Gate"
+  },
+  {
+   "id": "king_edward_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "langara_49th_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "lucidota_exchange",
+   "traits": [
+    "Program"
+   ],
+   "type": "Program"
+  },
+  {
+   "id": "main_street_science_world_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "marine_drive_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "mayor",
+   "traits": [
+    "Person"
+   ],
+   "type": "Person"
+  },
+  {
+   "id": "moody_heller_murch",
+   "traits": [
+    "Person"
+   ],
+   "type": "Person"
+  },
+  {
+   "id": "mount_pleasant",
+   "traits": [
+    "District",
+    "Place"
+   ],
+   "type": "District"
+  },
+  {
+   "id": "nanaimo_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "new_fountain_shelter",
+   "traits": [
+    "Shelter",
+    "Place"
+   ],
+   "type": "Shelter"
+  },
+  {
+   "id": "new_west_downtown",
+   "traits": [
+    "District",
+    "Place"
+   ],
+   "type": "District"
+  },
+  {
+   "id": "new_west_sapperton",
+   "traits": [
+    "District",
+    "Place"
+   ],
+   "type": "District"
+  },
+  {
+   "id": "new_westminster_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "oakridge_41st_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "orr",
+   "traits": [
+    "Person",
+    "Authority"
+   ],
+   "type": "Person"
+  },
+  {
+   "id": "osborn_shelter",
+   "traits": [
+    "Shelter",
+    "Place"
+   ],
+   "type": "Shelter"
+  },
+  {
+   "id": "pacifican_tgp",
+   "traits": [
+    "Funder"
+   ],
+   "type": "Funder"
+  },
+  {
+   "id": "pandey_tacocolo_charqui",
+   "traits": [
+    "Operator"
+   ],
+   "type": "Operator"
+  },
+  {
+   "id": "park_board",
+   "traits": [
+    "Authority"
+   ],
+   "type": "Authority"
+  },
+  {
+   "id": "park_board_new_2026",
+   "traits": [
+    "Authority"
+   ],
+   "type": "Authority"
+  },
+  {
+   "id": "park_board_office",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "patronscan",
+   "traits": [
+    "Vendor"
+   ],
+   "type": "Vendor"
+  },
+  {
+   "id": "pawn_shop_1117_granville",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "police_encounters_per_station",
+   "traits": [
+    "Data"
+   ],
+   "type": "Data"
+  },
+  {
+   "id": "purpose_society_shelter_new_west",
+   "traits": [
+    "Shelter",
+    "Place"
+   ],
+   "type": "Shelter"
+  },
+  {
+   "id": "restaurant_unit_1700sqft",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "roxy_932_granville",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "roxy_burger_910_granville",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "russell_residence_new_west",
+   "traits": [
+    "Shelter",
+    "Place"
+   ],
+   "type": "Shelter"
+  },
+  {
+   "id": "sapperton_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "seawall_route",
+   "traits": [
+    "Route"
+   ],
+   "type": "Route"
+  },
+  {
+   "id": "shop_storage_near_harbour_green",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "splash_pad",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "sro_buildings_vancouver",
+   "traits": [
+    "Data"
+   ],
+   "type": "Data"
+  },
+  {
+   "id": "stadium_chinatown_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "station_22nd_street",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "tacoloco",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "translink",
+   "traits": [
+    "Operator"
+   ],
+   "type": "Operator"
+  },
+  {
+   "id": "treoscope_velvetrope",
+   "traits": [
+    "System"
+   ],
+   "type": "System"
+  },
+  {
+   "id": "tricycle_base",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "tricycles_worker",
+   "traits": [
+    "Program"
+   ],
+   "type": "Program"
+  },
+  {
+   "id": "two_parrots_1202_granville",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "ugm_heatley",
+   "traits": [
+    "Shelter",
+    "Place"
+   ],
+   "type": "Shelter"
+  },
+  {
+   "id": "vancouver_city_centre_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "washrooms",
+   "traits": [
+    "Place"
+   ],
+   "type": "Place"
+  },
+  {
+   "id": "waterfront_station",
+   "traits": [
+    "Station",
+    "Place"
+   ],
+   "type": "Station"
+  },
+  {
+   "id": "webc",
+   "traits": [
+    "Funder"
+   ],
+   "type": "Funder"
+  },
+  {
+   "id": "west_end",
+   "traits": [
+    "District",
+    "Place"
+   ],
+   "type": "District"
+  },
+  {
+   "id": "workers_dev",
+   "traits": [
+    "NetworkHome"
+   ],
+   "type": "NetworkHome"
+  }
+ ],
+ "triples": [
+  [
+   "harbour_green",
+   "contains",
+   "splash_pad",
+   "proven",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "harbour_green",
+   "contains",
+   "washrooms",
+   "proven",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "harbour_green",
+   "contains",
+   "restaurant_unit_1700sqft",
+   "proven",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "harbour_green",
+   "located_at",
+   "1199_w_cordova",
+   "proven",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "park_board",
+   "authorizes_negotiation",
+   "pandey_tacocolo_charqui",
+   "proven",
+   "2026-07-27",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "park_board",
+   "leases",
+   "restaurant_unit_1700sqft",
+   "claimed",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "pandey_tacocolo_charqui",
+   "operates",
+   "tacoloco",
+   "proven",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "pandey_tacocolo_charqui",
+   "operates",
+   "charqui",
+   "proven",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "pandey_tacocolo_charqui",
+   "opens",
+   "restaurant_unit_1700sqft",
+   "claimed",
+   "2027-03-01",
+   "2027-05-31",
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "cute_city",
+   "operates",
+   "tricycle_base",
+   "claimed",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "cute_city",
+   "competes_with",
+   "pandey_tacocolo_charqui",
+   "claimed",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "cute_city",
+   "partners_with",
+   "pandey_tacocolo_charqui",
+   "claimed",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "cute_city",
+   "touches",
+   "harbour_green",
+   "claimed",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "park_board",
+   "permits",
+   "cute_city",
+   "unknown",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "fry",
+   "decides",
+   "park_board_new_2026",
+   "claimed",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "orr",
+   "decides",
+   "park_board_new_2026",
+   "claimed",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "fry",
+   "endorses",
+   "cute_city",
+   "unknown",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "orr",
+   "endorses",
+   "cute_city",
+   "unknown",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "moody_heller_murch",
+   "finds",
+   "shop_storage_near_harbour_green",
+   "claimed",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "bia_downtown",
+   "supports",
+   "cute_city",
+   "claimed",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "bia_westend",
+   "supports",
+   "cute_city",
+   "claimed",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "futurpreneur",
+   "funds",
+   "cute_city",
+   "claimed",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "webc",
+   "funds",
+   "cute_city",
+   "claimed",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "pacifican_tgp",
+   "funds",
+   "cute_city",
+   "unknown",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "pacifican_tgp",
+   "requires",
+   "incorporation",
+   "proven",
+   "2026-10-26",
+   null,
+   "typed-traits.json harbour_green_compressed"
+  ],
+  [
+   "fry",
+   "elected",
+   "mayor",
+   "proven",
+   "2026-10-17",
+   null,
+   "algebra-primitives.json harbour_green_time_triples"
+  ],
+  [
+   "park_board_new_2026",
+   "inaugurated",
+   "park_board",
+   "proven",
+   "2026-11-02",
+   null,
+   "algebra-primitives.json harbour_green_time_triples"
+  ],
+  [
+   "barwatch_vancouver",
+   "contains",
+   "edge_1100_granville",
+   "claimed",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "barwatch_vancouver",
+   "contains",
+   "pawn_shop_1117_granville",
+   "claimed",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "barwatch_vancouver",
+   "contains",
+   "roxy_burger_910_granville",
+   "claimed",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "barwatch_vancouver",
+   "contains",
+   "two_parrots_1202_granville",
+   "claimed",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "barwatch_vancouver",
+   "contains",
+   "granville_strip_1050_granville",
+   "proven",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "barwatch_vancouver",
+   "contains",
+   "roxy_932_granville",
+   "claimed",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "edge_1100_granville",
+   "uses_door_system",
+   "patronscan",
+   "unknown",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "pawn_shop_1117_granville",
+   "uses_door_system",
+   "patronscan",
+   "unknown",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "roxy_burger_910_granville",
+   "uses_door_system",
+   "patronscan",
+   "unknown",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "two_parrots_1202_granville",
+   "uses_door_system",
+   "patronscan",
+   "unknown",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "granville_strip_1050_granville",
+   "uses_door_system",
+   "patronscan",
+   "unknown",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "barwatch_vancouver",
+   "uses_door_system",
+   "treoscope_velvetrope",
+   "proven",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "treoscope_velvetrope",
+   "shares_ban",
+   "barwatch_vancouver",
+   "proven",
+   "2007",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "cute_city",
+   "touches",
+   "barwatch_vancouver",
+   "unknown",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "cute_city",
+   "touches",
+   "translink",
+   "claimed",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "cute_city",
+   "touches",
+   "city_open_data",
+   "claimed",
+   "2026-10-27",
+   null,
+   "vancouver-surveillance-graph.json"
+  ],
+  [
+   "dtes_strathcona",
+   "contains",
+   "sro_buildings_vancouver",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "sro_buildings_vancouver",
+   "count_146_buildings_6500_rooms_most_dtes",
+   "dtes_strathcona",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "dtes_strathcona",
+   "contains",
+   "osborn_shelter",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "dtes_strathcona",
+   "contains",
+   "new_fountain_shelter",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "dtes_strathcona",
+   "contains",
+   "ugm_heatley",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "central_business_district",
+   "contains",
+   "belkin_house",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "central_business_district",
+   "contains",
+   "catholic_charities_hostel",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "new_west_downtown",
+   "contains",
+   "purpose_society_shelter_new_west",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "new_west_downtown",
+   "contains",
+   "russell_residence_new_west",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "new_west_downtown",
+   "contains",
+   "agnes_602_new_west",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "waterfront_station",
+   "shelter_proxy_high",
+   "dtes_strathcona",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "waterfront_station",
+   "crime_proxy_high",
+   "central_business_district",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "waterfront_station",
+   "combined_proxy_4",
+   "waterfront_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "granville_station",
+   "shelter_proxy_high",
+   "central_business_district",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "granville_station",
+   "crime_proxy_high",
+   "central_business_district",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "granville_station",
+   "combined_proxy_4",
+   "granville_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "vancouver_city_centre_station",
+   "combined_proxy_4",
+   "vancouver_city_centre_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "stadium_chinatown_station",
+   "combined_proxy_4",
+   "stadium_chinatown_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "main_street_science_world_station",
+   "combined_proxy_4",
+   "main_street_science_world_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "oakridge_41st_station",
+   "shelter_proxy_low",
+   "oakridge_41st_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "oakridge_41st_station",
+   "crime_proxy_low",
+   "oakridge_41st_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "oakridge_41st_station",
+   "combined_proxy_0",
+   "oakridge_41st_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "langara_49th_station",
+   "combined_proxy_0",
+   "langara_49th_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "marine_drive_station",
+   "combined_proxy_0",
+   "marine_drive_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "sapperton_station",
+   "combined_proxy_0",
+   "sapperton_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "braid_station",
+   "combined_proxy_0",
+   "braid_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "king_edward_station",
+   "combined_proxy_1",
+   "king_edward_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "nanaimo_station",
+   "combined_proxy_1",
+   "nanaimo_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "station_22nd_street",
+   "combined_proxy_0_flagged_planned_site",
+   "station_22nd_street",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "new_westminster_station",
+   "combined_proxy_3",
+   "new_westminster_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "columbia_station",
+   "combined_proxy_3",
+   "columbia_station",
+   "claimed",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "homeless_encounters_per_station",
+   "is_publicly_counted",
+   "waterfront_station",
+   "unknown",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "police_encounters_per_station",
+   "is_publicly_counted",
+   "waterfront_station",
+   "unknown",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "homeless_encounters_per_station",
+   "is_publicly_counted",
+   "oakridge_41st_station",
+   "unknown",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "sapperton_station",
+   "closest_to",
+   "new_west_sapperton",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "columbia_station",
+   "closest_to",
+   "new_west_downtown",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "new_westminster_station",
+   "closest_to",
+   "new_west_downtown",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "granville_station",
+   "closest_to",
+   "central_business_district",
+   "proven",
+   "2026-10-30",
+   null,
+   "housing-crime-skytrain-graph.json"
+  ],
+  [
+   "coal_harbour",
+   "contains",
+   "harbour_green",
+   "claimed",
+   "2026-11-18",
+   null,
+   "homing-seed 2026-11-18"
+  ],
+  [
+   "coal_harbour",
+   "contains",
+   "coal_harbour_park",
+   "claimed",
+   "2026-11-18",
+   null,
+   "homing-seed 2026-11-18"
+  ],
+  [
+   "central_business_district",
+   "contains",
+   "bia_downtown",
+   "claimed",
+   "2026-11-18",
+   null,
+   "homing-seed 2026-11-18"
+  ],
+  [
+   "west_end",
+   "contains",
+   "bia_westend",
+   "claimed",
+   "2026-11-18",
+   null,
+   "homing-seed 2026-11-18"
+  ],
+  [
+   "cute_city_worker",
+   "homed_network",
+   "cutecity_cc",
+   "proven",
+   "2026-10-07",
+   null,
+   "cutecity/NETWORK-MAP-2026-10-07.md live probe"
+  ],
+  [
+   "tricycles_worker",
+   "homed_network",
+   "workers_dev",
+   "proven",
+   "2026-10-07",
+   null,
+   "cutecity/NETWORK-MAP-2026-10-07.md live probe"
+  ],
+  [
+   "ctcc_router",
+   "homed_network",
+   "workers_dev",
+   "proven",
+   "2026-10-07",
+   null,
+   "cutecity/NETWORK-MAP-2026-10-07.md live probe"
+  ],
+  [
+   "ai_router",
+   "homed_network",
+   "workers_dev",
+   "proven",
+   "2026-10-07",
+   null,
+   "cutecity/NETWORK-MAP-2026-10-07.md live probe"
+  ],
+  [
+   "lucidota_exchange",
+   "homed_network",
+   "workers_dev",
+   "proven",
+   "2026-10-07",
+   null,
+   "cutecity/NETWORK-MAP-2026-10-07.md live probe"
+  ],
+  [
+   "cute_city",
+   "homed_at",
+   "harbour_green",
+   "claimed",
+   "2026-11-18",
+   null,
+   "homing-seed 2026-11-18"
+  ],
+  [
+   "cpc",
+   "supports",
+   "cute_city",
+   "claimed",
+   "2026-10-26",
+   null,
+   "harbour-green-graph.json nodes/edges"
+  ],
+  [
+   "chcc",
+   "supports",
+   "cute_city",
+   "claimed",
+   "2026-10-26",
+   null,
+   "harbour-green-graph.json nodes/edges"
+  ],
+  [
+   "chcc",
+   "located_in",
+   "coal_harbour",
+   "claimed",
+   "2026-10-26",
+   null,
+   "harbour-green-graph.json nodes"
+  ],
+  [
+   "park_board_office",
+   "located_at",
+   "beach_ave_2099",
+   "claimed",
+   "2026-11-18",
+   null,
+   "memory/people/john-moody.md (Board office 2099 Beach Ave)"
+  ],
+  [
+   "seawall_route",
+   "connects",
+   "harbour_green",
+   "claimed",
+   "2026-10-26",
+   null,
+   "harbour-green-geo.json (schematic LineString joining published points)"
+  ],
+  [
+   "harbour_cafe_nicola",
+   "is_distinct_from",
+   "restaurant_unit_1700sqft",
+   "proven",
+   "2026-10-26",
+   null,
+   "harbour-green-geo.json (distinct from Harbour Green Cafe lease)"
+  ]
+ ],
+ "unknowns": [
+  "Geographic home of all 5 network-homed programs (cute_city_worker, tricycles_worker, ctcc_router, ai_router, lucidota_exchange) \u2014 network home proven, geographic home unknown. That is the first homing queue.",
+  "District polygons: districts are named areas, not geometries. No boundary source exists.",
+  "Whether any named Granville venue uses Patronscan \u2014 unknown on all 5 tested venues; roxy_932 untested.",
+  "Per-station counts of homeless-person encounters and police encounters \u2014 no public data exists (housing graph must_not_claim).",
+  "602 Agnes St occupancy \u2014 claimed, not confirmed 2026-10-30.",
+  "502 20th St New Westminster tiny homes \u2014 announced Feb 2026, opening unconfirmed; not a thing yet.",
+  "Pedicab licence cap (30 vs ~60 conflict) and Park Board permission for cute_city \u2014 unknown, carried from run #1.",
+  "Lease execution for Pandey / TacoLoco-Charqui \u2014 authorised 2026-07-27, execution NOT proven in public record as of 2026-10-26.",
+  "'cafe afrigsto' tenant name \u2014 unmatched in public sources, run #1. Closest distinct matches only.",
+  "Fry / Orr endorsement of cute_city \u2014 unknown. 'Likes me' is claimed, not in writing."
+ ]
+}
